@@ -1,0 +1,7 @@
+<div class="sidebar">
+  <ul>
+    <li *ngFor="let convs of conversions" (click)="selectedOption(convs)">
+      {{convs.name}}
+    </li>
+  </ul>
+</div>

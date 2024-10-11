@@ -1,0 +1,8 @@
+<div class="main-container">
+  <app-navbar></app-navbar>
+  <div class="content">
+    <app-sidebar (emitter)="conversionSelected($event)"></app-sidebar>
+    <app-input [conversion]="conversion?.prev || ''" (emitter)="getInputCode($event)"></app-input>
+    <app-output [conversion]="conversion?.new || ''" [code]="outputCode"></app-output>
+  </div>
+</div>
