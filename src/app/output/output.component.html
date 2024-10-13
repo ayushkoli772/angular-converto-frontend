@@ -1,2 +1,14 @@
-{{conversion}}
-<div #editorContainer style="width:100%;height:100%;"></div>
+<div>{{conversion}}</div>
+<code-editor #editor
+      [(ngModel)]="code"
+      [theme]="options.theme"
+      [setup]="options.setup"
+      [disabled]="options.disabled"
+      [readonly]="options.readonly"
+      [placeholder]="options.placeholder"
+      [indentWithTab]="options.indentWithTab"
+      [indentUnit]="options.indentUnit"
+      [lineWrapping]="options.lineWrapping"
+      [highlightWhitespace]="options.highlightWhitespace"
+      [language]="options.language"
+></code-editor>

@@ -24,9 +24,6 @@ export class ConversionService {
 
     const stringifiedInput = JSON.stringify(inputCode).replace(/^"|"$/g, '');
 
-
-    alert(stringifiedInput);
-
     const requestUrl = `${this.url}?${params}`;
 
     return from(
@@ -43,7 +40,6 @@ export class ConversionService {
           if (!response.ok) {
             throw new Error(`Error! status: ${response.status}`);
           }
-          alert(response);
           return response.text(); // Expecting plain text response
         })
         .catch((error) => {

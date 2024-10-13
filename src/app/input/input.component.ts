@@ -1,58 +1,61 @@
-import { Component, ElementRef, EventEmitter, Inject, Input, NO_ERRORS_SCHEMA, OnInit, Output, PLATFORM_ID, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, NO_ERRORS_SCHEMA, OnInit, Output, PLATFORM_ID, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo } from 'ckeditor5';
 import { NgIf } from '@angular/common';
 import * as monaco from 'monaco-editor';
-// import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
-// import { BrowserModule } from '@angular/platform-browser';
+import { EditorState, EditorView, basicSetup } from '@codemirror/basic-setup';
+import { javascript } from '@codemirror/lang-javascript';
+import { oneDark } from '@codemirror/theme-one-dark';
+import { FormsModule } from '@angular/forms';
+import { CodeEditor, Setup, Theme} from '@acrodata/code-editor';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [NgIf,CKEditorModule],
+  imports: [NgIf,FormsModule,CodeEditor],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './input.component.html',
-  styleUrl: './input.component.css',
-  schemas:[NO_ERRORS_SCHEMA]
+  styles: [`
+    :host {
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* Full viewport height */
+    } 
+    code-editor {
+      height: 100%;
+      width: 100%;
+      font-size: 15px;
+      border: 1px solid #ccc;
+    }
+  `],
 })
-export class InputComponent implements OnInit{
+export class InputComponent{
 
   @Input() conversion!:string;
-
-  @ViewChild('editorContainer', { static: true }) editorContainer!: ElementRef;
-  private _editor: monaco.editor.IStandaloneCodeEditor | undefined;
-
   code: string = '';
 
   @Output() emitter = new EventEmitter();
 
-  ngOnInit(): void {
-    this.initMonaco();
+  @ViewChild('editor') editor!: CodeEditor;
+
+  options = {
+    theme: 'dark' as Theme,
+    setup: 'minimal' as Setup,
+    disabled: false,
+    readonly: false,
+    placeholder: 'Enter your code here...',
+    indentWithTab: 'Indent with tab',
+    indentUnit: '4',
+    lineWrapping: true,
+    highlightWhitespace: true,
+    language: 'javascript'
+  };
+
+  onCodeChange(newCode: string) {
+    console.log('Code changed:', newCode);
+    // You can add additional logic here if needed
   }
 
-  private initMonaco() {
-    this._editor = monaco.editor.create(this.editorContainer.nativeElement, {
-      value: this.code,
-      language: this.conversion,
-      theme: 'vs-dark'
-    });
-
-    // Update the code variable and emit changes when the editor content changes
-    this._editor.onDidChangeModelContent(() => {
-      this.code = this._editor?.getValue() ?? '';
-    });
-  }
-
-  // Add methods to get/set editor content as needed
-  get editor(): monaco.editor.IStandaloneCodeEditor | undefined {
-    return this._editor;
-  }
-
-  updateEditorContent(newCode: string) {
-    if (this._editor) {
-      this._editor.setValue(newCode);
-    }
-  }
 
   onConvert() {
     this.emitter.emit(this.code);

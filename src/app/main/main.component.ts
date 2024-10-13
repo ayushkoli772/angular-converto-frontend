@@ -37,7 +37,6 @@ export class MainComponent {
         )
         .subscribe(
           (result) => {
-            alert(result);
             this.outputCode=result;
           },
           (error) => {

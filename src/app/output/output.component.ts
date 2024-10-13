@@ -2,60 +2,47 @@ import { Component, ElementRef, EventEmitter, Inject, Input, NO_ERRORS_SCHEMA, O
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ClassicEditor, Bold, Essentials, Italic, Mention, Paragraph, Undo } from 'ckeditor5';
 import { NgIf } from '@angular/common';
-import * as monaco from 'monaco-editor';
+import { FormsModule } from '@angular/forms';
+import { CodeEditor, Setup, Theme} from '@acrodata/code-editor';
 
 @Component({
   selector: 'app-output',
   standalone: true,
-  imports: [NgIf,CKEditorModule],
+  imports: [NgIf,FormsModule,CodeEditor],
   templateUrl: './output.component.html',
-  styleUrl: './output.component.css'
+  styles: [`
+    :host {
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* Full viewport height */
+    } 
+    code-editor {
+      height: 100%;
+      width: 100%;
+      font-size: 15px;
+      border: 1px solid #ccc;
+    }
+  `],
 })
-export class OutputComponent implements OnInit, OnChanges{
-  @ViewChild('editorContainer', { static: true }) editorContainer!: ElementRef;
-  private _editor: monaco.editor.IStandaloneCodeEditor | undefined;
+export class OutputComponent{
+  
 
   @Input() code: string = '// No code to display';
   @Input() conversion!: string;
 
-  ngOnInit(): void {
-    this.initMonaco();
-  }
+  @ViewChild('editor') editor!: CodeEditor;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['code'] && !changes['code'].firstChange) {
-      this.updateEditorContent(this.code);
-    }
-    if (changes['language'] && !changes['language'].firstChange) {
-      monaco.editor.setModelLanguage(this._editor?.getModel()!, this.conversion);
-    }
-  }
-
-  private initMonaco() {
-    this._editor = monaco.editor.create(this.editorContainer.nativeElement, {
-      value: this.code,
-      language: this.conversion,
-      theme: 'vs-dark',
-      readOnly: true,
-      minimap: { enabled: false },
-      scrollBeyondLastLine: false,
-      lineNumbers: 'on',
-      wordWrap: 'on'
-    });
-  }
-
-  // Method to update the editor content programmatically
-  updateEditorContent(newCode: string) {
-    if (this._editor) {
-      this._editor.setValue(newCode);
-    }
-  }
-
-  // Cleanup method
-  ngOnDestroy() {
-    if (this._editor) {
-      this._editor.dispose();
-    }
-  }
+  options = {
+    theme: 'dark' as Theme,
+    setup: 'minimal' as Setup,
+    disabled: false,
+    readonly: true,
+    placeholder: '',
+    indentWithTab: 'Indent with tab',
+    indentUnit: '4',
+    lineWrapping: true,
+    highlightWhitespace: true,
+    language: 'javascript'
+  };
 
 }
