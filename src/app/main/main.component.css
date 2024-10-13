@@ -1,34 +1,35 @@
+/* Main container styling */
 .main-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
+/* Navbar styling */
 app-navbar {
   height: 50px;
   flex-shrink: 0;
 }
 
+/* Content styling: layout with sidebar and main content */
 .content {
   display: flex;
   flex: 1;
 }
 
+/* Sidebar styling */
 app-sidebar {
-  width: 250px;
+  width: 200px;
   background-color: #f4f4f4;
   flex-shrink: 0;
 }
 
+/* Input and output component styling */
 app-input, app-output {
   flex: 1;
-  padding: 10px;
-}
-
-app-input {
-  border-right: 1px solid #ccc;
-}
-
-app-output {
+  padding: 20px;
   background-color: #f9f9f9;
+  border-left: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  overflow: auto;
 }

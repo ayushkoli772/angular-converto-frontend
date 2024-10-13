@@ -1,1 +1,50 @@
-@import 'ckeditor5/ckeditor5.css';
+/* Input container styling */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Header with conversion label and button */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Label styling */
+.conversion-label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Code editor styling */
+code-editor {
+  flex: 1;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 17px;
+}
+
+/* Convert button styling */
+.convert-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+/* Convert button hover effect */
+.convert-button:hover {
+  background-color: #0056b3;
+}

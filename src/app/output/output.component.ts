@@ -10,19 +10,7 @@ import { CodeEditor, Setup, Theme} from '@acrodata/code-editor';
   standalone: true,
   imports: [NgIf,FormsModule,CodeEditor],
   templateUrl: './output.component.html',
-  styles: [`
-    :host {
-      display: flex;
-      flex-direction: column;
-      height: 100vh; /* Full viewport height */
-    } 
-    code-editor {
-      height: 100%;
-      width: 100%;
-      font-size: 15px;
-      border: 1px solid #ccc;
-    }
-  `],
+  styleUrls: ['./output.component.css'],
 })
 export class OutputComponent{
   
@@ -31,6 +19,22 @@ export class OutputComponent{
   @Input() conversion!: string;
 
   @ViewChild('editor') editor!: CodeEditor;
+
+  copyButtonText: string = 'Copy';
+
+  onCopy() {
+    navigator.clipboard.writeText(this.code).then(
+      () => {
+        this.copyButtonText = 'Copied';
+        setTimeout(() => {
+          this.copyButtonText = 'Copy';
+        }, 2000);
+      },
+      (err) => {
+        console.error('Failed to copy code: ', err);
+      }
+    );
+  }
 
   options = {
     theme: 'dark' as Theme,

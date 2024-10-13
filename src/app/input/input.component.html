@@ -1,16 +1,20 @@
-<div>{{conversion}}</div>
-<button (click)="onConvert()">Convert</button>
-<code-editor #editor
-      [(ngModel)]="code"
-      (ngModelChange)="onCodeChange($event)"
-      [theme]="options.theme"
-      [setup]="options.setup"
-      [disabled]="options.disabled"
-      [readonly]="options.readonly"
-      [placeholder]="options.placeholder"
-      [indentWithTab]="options.indentWithTab"
-      [indentUnit]="options.indentUnit"
-      [lineWrapping]="options.lineWrapping"
-      [highlightWhitespace]="options.highlightWhitespace"
-      [language]="options.language"
-    ></code-editor>
+<div class="input-container">
+  <div class="header">
+    <div class="conversion-label">{{ conversion }}</div>
+    <button class="convert-button" (click)="onConvert()">Convert</button>
+  </div>
+  <code-editor #editor
+    [(ngModel)]="code"
+    (ngModelChange)="onCodeChange($event)"
+    [theme]="options.theme"
+    [setup]="options.setup"
+    [disabled]="options.disabled"
+    [readonly]="options.readonly"
+    [placeholder]="options.placeholder"
+    [indentWithTab]="options.indentWithTab"
+    [indentUnit]="options.indentUnit"
+    [lineWrapping]="options.lineWrapping"
+    [highlightWhitespace]="options.highlightWhitespace"
+    [language]="options.language"
+  ></code-editor>
+</div>

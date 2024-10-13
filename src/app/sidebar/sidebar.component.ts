@@ -12,6 +12,8 @@ export class SidebarComponent implements OnInit {
 
   @Output() emitter = new EventEmitter();
 
+  selectedConversion: any;
+
   conversions = [
     { name: 'JSON to TypeScript', value: {prev:'JSON',new:'TypeScript'} },
     { name: 'HTML to JSX', value: {prev:'HTML',new:'JSX'} },

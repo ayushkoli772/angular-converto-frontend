@@ -37,7 +37,7 @@ export class MainComponent {
         )
         .subscribe(
           (result) => {
-            this.outputCode=result;
+            this.outputCode=result.replace(/^```[a-z]*\n/, '').replace(/```$/, '');
           },
           (error) => {
             console.error('Conversion failed', error);

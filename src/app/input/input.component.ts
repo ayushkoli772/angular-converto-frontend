@@ -15,19 +15,7 @@ import { CodeEditor, Setup, Theme} from '@acrodata/code-editor';
   imports: [NgIf,FormsModule,CodeEditor],
   encapsulation: ViewEncapsulation.None,
   templateUrl: './input.component.html',
-  styles: [`
-    :host {
-      display: flex;
-      flex-direction: column;
-      height: 100vh; /* Full viewport height */
-    } 
-    code-editor {
-      height: 100%;
-      width: 100%;
-      font-size: 15px;
-      border: 1px solid #ccc;
-    }
-  `],
+  styleUrls: ['./input.component.css'],
 })
 export class InputComponent{
 
