@@ -1,27 +1,50 @@
-# Converto
+# Converto - Code Format Converter
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+## Overview
 
-## Development server
+Converto is a web-based application that allows users to convert code between various formats easily. This Angular project offers a seamless user interface for interacting with the backend API, providing users the ability to paste or input code, choose their desired format, and get the output quickly.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Demo
 
-## Code scaffolding
+[Live Link](converto-v2.netlify.app/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
+- **Code Input and Conversion**: Users can input their code in one format and convert it into another format with ease.
+- **Responsive Layout**: The app is designed to work smoothly across devices with a modern, responsive UI.
+- **Integration with Backend**: The frontend is integrated with a Spring Boot backend that handles code format conversions via REST APIs.
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository locally:
 
-## Running unit tests
+```bash
+git clone https://github.com/ayushkoli772/angular-converto-frontend.git
+```
+2. Navigate to the project directory:
+```
+cd converto-frontend
+```
+3. Install dependencies:
+```
+npm install
+```
+4. Build the project:
+```
+ng build
+```
+5. Run the development server:
+```
+ng serve -o
+```
+6. Open [http://localhost:4200](http://localhost:4200) in your browser to view the application.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Technologies Used
+- **Frontend:** Angular, TypeScript, Codemirror (for code editing)
+- **Backend:** Spring Boot (REST API for handling code conversion)
+- **Styling:** CSS3 for custom styles
+- **Hosting:** Netlify (Frontend), Render (Backend)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Future Improvements
+- **Additional Code Formats:** Expand the supported formats for code conversion.
+- **User Authentication:** Implement user accounts to save conversion histories.
+- **Real-time Collaboration:** Allow users to collaborate on code conversions in real-time.
