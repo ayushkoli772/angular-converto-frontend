@@ -22,7 +22,7 @@ git clone https://github.com/ayushkoli772/angular-converto-frontend.git
 ```
 2. Navigate to the project directory:
 ```
-cd converto-frontend
+cd angular-converto-frontend
 ```
 3. Install dependencies:
 ```
